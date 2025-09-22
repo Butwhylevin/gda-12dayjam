@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo23crrwg3b6j"]
+
+[ext_resource type="PackedScene" uid="uid://dh0gwxbq6rnao" path="res://Scenes/enemy.tscn" id="1_a02cp"]
+[ext_resource type="Script" uid="uid://b3stokrlyi8hm" path="res://Scenes/enemy_controller.gd" id="1_go701"]
+[ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/tower.tscn" id="3_5a7ea"]
+
+[sub_resource type="Curve2D" id="Curve2D_yp4wr"]
+_data = {
+"points": PackedVector2Array(189.00201, -155.727, -189.00201, 155.727, 952, 28, 215.69, -179.24, -215.69, 179.24, 222, 126, -134, -108, 134, 108, 714, 255, 3, -112, -3, 112, 120, 417, -19.965002, -79.86001, 19.965002, 79.86001, 1070, 588)
+}
+point_count = 5
+
+[node name="World" type="Node2D"]
+
+[node name="Enemy Controller" type="Node2D" parent="."]
+script = ExtResource("1_go701")
+
+[node name="EnemyPath" type="Path2D" parent="Enemy Controller"]
+curve = SubResource("Curve2D_yp4wr")
+
+[node name="Enemy" parent="Enemy Controller/EnemyPath" instance=ExtResource("1_a02cp")]
+position = Vector2(952, 28)
+hp = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+
+[node name="Tower Holder" type="Node2D" parent="."]
+
+[node name="Tower" parent="Tower Holder" instance=ExtResource("3_5a7ea")]
+position = Vector2(449, 133)
