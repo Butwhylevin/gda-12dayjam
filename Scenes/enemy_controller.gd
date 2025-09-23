@@ -1,7 +1,7 @@
 extends Node
 
 # PLACEHOLDER SPAWNING: just endlessly spawn enemies
-var spawn_wait = 0.5
+@export var spawn_wait = 0.5
 var enemy_scene = preload("res://Scenes/enemy.tscn")
 
 @onready var enemy_path = $EnemyPath

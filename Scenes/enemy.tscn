@@ -10,7 +10,7 @@ rotates = false
 loop = false
 script = ExtResource("1_1f0kj")
 speed = 200.0
-hp = null
+hp = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

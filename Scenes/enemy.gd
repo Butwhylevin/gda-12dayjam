@@ -2,9 +2,10 @@ extends PathFollow2D
 
 @export var speed : float
 @export var hp : int = 1
+@onready var area : Area2D = $Area2D
 
 var cur_stun_time = 0
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (cur_stun_time > 0):
 		cur_stun_time -= delta
 		return
@@ -33,10 +34,13 @@ func take_damage(damage : int) -> bool:
 	return true
 
 func _on_area_2d_area_entered(bullet: Area2D) -> void:
-	if bullet.collision_layer != 2:
+	print("area entered")
+	
+	if bullet.get_collision_layer_value(4):
 		return
 	
-	bullet.on_hit_enemy(self)
+	print("is bullet")
+	bullet.on_hit_enemy(area)
 	if !take_damage(bullet.damage):
 		return
 	

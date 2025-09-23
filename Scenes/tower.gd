@@ -7,6 +7,8 @@ extends Node2D
 
 # references
 @onready var tower_range : Area2D = $"Tower Range"
+@onready var enemy_path : Path2D = $"/root/World/Enemy Controller/EnemyPath"
+@onready var debug_circle : Node2D = $"Debug Point"
 
 ## BASE FUNCTIONS
 func _process(delta: float) -> void:
@@ -36,12 +38,26 @@ func do_shoot():
 	var bullet : Area2D = bullet_scene.instantiate()
 	GameManager.add_child(bullet)
 	bullet.global_position = global_position
-	bullet.look_at(target.global_position)
 	
 	
-	print("made bullet")
+	## lead your shots by sampling a further along point on the curve
+	# get an initial estimate of the travel time
+	var enemy_path_follow : PathFollow2D = target.get_parent()
+	var travel_time = global_position.distance_to(target.global_position) / (bullet.speed)
+	var future_enemy_point : Vector2 = target.global_position
 	
-	# TODO: (maybe) lead your shots by sampling a further along point on the curve
+	for i in range(5):
+		# get the point on the enemy path that the enemy will be at at this time
+		var future_progress = enemy_path_follow.progress + (enemy_path_follow.speed * travel_time)
+		future_enemy_point = enemy_path.curve.sample_baked(future_progress, false)
+		# just for debug purposes
+		debug_circle.global_position = future_enemy_point
+		# repeat these steps 5 times to get a good estimate
+		travel_time = global_position.distance_to(future_enemy_point) / (bullet.speed)
+	
+	bullet.look_at(future_enemy_point)
+	bullet.estimated_travel_time = travel_time
+	
 
 #endregion
 
