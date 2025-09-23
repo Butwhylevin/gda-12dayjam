@@ -5,6 +5,7 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_oj352")
+start_money = 3
 fast_forwards_speed = 4
 
 [node name="UI Manager" type="Control" parent="."]
@@ -19,3 +20,10 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "HP: 100"
+
+[node name="Money Label" type="Label" parent="UI Manager"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 40.0
+offset_bottom = 44.0
+text = "$3"

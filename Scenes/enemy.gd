@@ -2,6 +2,8 @@ extends PathFollow2D
 
 @export var speed : float
 @export var hp : int = 1
+@export var money_reward : int = 1
+
 @onready var area : Area2D = $Area2D
 
 var cur_stun_time = 0
@@ -28,10 +30,14 @@ func do_stun(stun_time : float):
 func take_damage(damage : int) -> bool:
 	hp -= damage
 	if (hp <= 0):
-		queue_free()
+		die()
 		return false
 	
 	return true
+
+func die():
+	GameManager.money_changed(money_reward)
+	queue_free()
 
 func _on_area_2d_area_entered(bullet: Area2D) -> void:
 	print("area entered")

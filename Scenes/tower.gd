@@ -56,7 +56,6 @@ func do_shoot():
 		travel_time = global_position.distance_to(future_enemy_point) / (bullet.speed)
 	
 	bullet.look_at(future_enemy_point)
-	bullet.estimated_travel_time = travel_time
 	
 
 #endregion

@@ -9,8 +9,6 @@ extends Area2D
 
 @onready var cur_pierce = pierce
 var velocity
-var estimated_travel_time
-var actual_travel_time = 0
 
 func _ready() -> void:
 	cur_lifetime = lifetime
@@ -18,7 +16,6 @@ func _ready() -> void:
 var cur_lifetime
 func _physics_process(delta: float) -> void:
 	cur_lifetime -= delta
-	actual_travel_time += delta
 	if (cur_lifetime <= 0):
 		queue_free()
 	
@@ -27,6 +24,5 @@ func _physics_process(delta: float) -> void:
 
 func on_hit_enemy(_enemy_hit : Area2D):
 	cur_pierce -= 1
-	print("Estimated travel time: ", estimated_travel_time, " Actual Travel Time:", actual_travel_time)
 	if cur_pierce <= 1:
 		queue_free()

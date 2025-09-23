@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo23crrwg3b6j"]
+[gd_scene load_steps=10 format=3 uid="uid://bo23crrwg3b6j"]
 
 [ext_resource type="PackedScene" uid="uid://dh0gwxbq6rnao" path="res://Scenes/enemy.tscn" id="1_a02cp"]
 [ext_resource type="Script" uid="uid://b3stokrlyi8hm" path="res://Scenes/enemy_controller.gd" id="1_go701"]
 [ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/tower.tscn" id="3_5a7ea"]
+[ext_resource type="Script" uid="uid://btfwe2hnthc5d" path="res://Scenes/tower_manager.gd" id="3_8j60k"]
+[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="5_fo5ed"]
+[ext_resource type="Texture2D" uid="uid://cw7eigago7mam" path="res://Sprites/circle.png" id="6_5ukr8"]
 
 [sub_resource type="Curve2D" id="Curve2D_yp4wr"]
 _data = {
@@ -10,11 +13,22 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fo5ed"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fo5ed"]
+radius = 60.0
+
 [node name="World" type="Node2D"]
 
 [node name="Enemy Controller" type="Node2D" parent="."]
 script = ExtResource("1_go701")
-spawn_wait = 3.0
+spawn_wait = 0.1
+
+[node name="Path Area" type="Area2D" parent="Enemy Controller"]
+collision_layer = 16
+
+[node name="Enemy Path Polygon" type="CollisionPolygon2D" parent="Enemy Controller/Path Area"]
+polygon = PackedVector2Array(941, -4, 855, 45, 737, 53, 598, 35, 455, 25, 338, 40, 191, 116, 150, 200, 209, 231, 351, 233, 631, 237, 698, 276, 628, 306, 448, 316, 218, 339, 112, 379, 103, 443, 150, 478, 532, 532, 990, 583, 977, 657, 1180, 684, 1173, 591, 998, 528, 171, 436, 163, 402, 330, 370, 682, 337, 751, 292, 737, 239, 660, 201, 260, 198, 217, 181, 233, 142, 366, 75, 607, 86, 743, 113, 886, 95, 1020, 27, 1019, -17)
 
 [node name="EnemyPath" type="Path2D" parent="Enemy Controller"]
 curve = SubResource("Curve2D_yp4wr")
@@ -28,8 +42,23 @@ limit_top = 0
 limit_right = 1152
 limit_bottom = 648
 
-[node name="Tower Holder" type="Node2D" parent="."]
+[node name="Tower Manager" type="Node2D" parent="."]
+script = ExtResource("3_8j60k")
+tower_scene = ExtResource("3_5a7ea")
 
-[node name="Tower" parent="Tower Holder" instance=ExtResource("3_5a7ea")]
-position = Vector2(449, 133)
-shoot_wait = 0.2
+[node name="Build Preview" type="Sprite2D" parent="Tower Manager"]
+modulate = Color(1, 1, 1, 0.36078432)
+top_level = true
+material = SubResource("CanvasItemMaterial_fo5ed")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_fo5ed")
+
+[node name="Build Area" type="Area2D" parent="Tower Manager/Build Preview"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower Manager/Build Preview/Build Area"]
+shape = SubResource("CircleShape2D_fo5ed")
+
+[node name="Range Preview" type="Sprite2D" parent="Tower Manager/Build Preview"]
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("6_5ukr8")
