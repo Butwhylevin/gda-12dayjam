@@ -1,20 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh0gwxbq6rnao"]
 
-[ext_resource type="Script" uid="uid://dbfo3p1ejwc56" path="res://Scenes/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="2_afpow"]
+[ext_resource type="Script" uid="uid://dbfo3p1ejwc56" path="res://Scripts/enemy.gd" id="1_nvvbs"]
+[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="2_2t2r4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
 
 [node name="Enemy" type="PathFollow2D"]
 rotates = false
 loop = false
-script = ExtResource("1_1f0kj")
+script = ExtResource("1_nvvbs")
 speed = 200.0
 hp = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_afpow")
+texture = ExtResource("2_2t2r4")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

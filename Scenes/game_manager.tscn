@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceb7uwikob31y"]
+[gd_scene load_steps=11 format=3 uid="uid://ceb7uwikob31y"]
 
-[ext_resource type="Script" uid="uid://ca3p867fbb553" path="res://Scenes/game_manager.gd" id="1_oj352"]
-[ext_resource type="Script" uid="uid://cjrjkthydq318" path="res://Scenes/ui_manager.gd" id="2_e5fcp"]
+[ext_resource type="Script" uid="uid://ca3p867fbb553" path="res://Scripts/game_manager.gd" id="1_oj352"]
+[ext_resource type="Script" uid="uid://cjrjkthydq318" path="res://Scripts/ui_manager.gd" id="2_e5fcp"]
+[ext_resource type="FontFile" uid="uid://bnexor3wenf86" path="res://Fonts/ITCKRIST.TTF" id="3_sq00h"]
+[ext_resource type="Texture2D" uid="uid://3yptkhbr34hi" path="res://Sprites/moon-icon.png" id="4_efn8y"]
+[ext_resource type="Texture2D" uid="uid://hroaxtbti5b" path="res://Sprites/HUD.png" id="4_mmt5l"]
+[ext_resource type="Texture2D" uid="uid://brrjsj1fe84pa" path="res://Sprites/HUD-right.png" id="4_yqty0"]
+[ext_resource type="LabelSettings" uid="uid://dwsba62rc6qgo" path="res://Fonts/label_settings.tres" id="5_fgdfb"]
+[ext_resource type="Texture2D" uid="uid://c3by8cjc2wfeb" path="res://Sprites/sun-icon.png" id="7_71d4j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqty0"]
+font = ExtResource("3_sq00h")
+font_size = 25
+outline_size = 10
+outline_color = Color(0.3019608, 0, 0.023529412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_71d4j"]
+font = ExtResource("3_sq00h")
+font_size = 18
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_oj352")
@@ -14,16 +30,92 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_e5fcp")
+sun_icon = ExtResource("7_71d4j")
+moon_icon = ExtResource("4_efn8y")
+
+[node name="UI Texture" type="TextureRect" parent="UI Manager"]
+layout_mode = 0
+offset_right = 290.0
+offset_bottom = 213.0
+texture = ExtResource("4_mmt5l")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="UI Texture2" type="TextureRect" parent="UI Manager"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1024.0
+offset_right = 1112.0
+offset_bottom = 120.0
+grow_horizontal = 0
+texture = ExtResource("4_yqty0")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="HP Label" type="Label" parent="UI Manager"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "HP: 100"
+offset_left = 289.0
+offset_top = 14.0
+offset_right = 330.0
+offset_bottom = 49.0
+text = "100"
+label_settings = SubResource("LabelSettings_yqty0")
 
 [node name="Money Label" type="Label" parent="UI Manager"]
 layout_mode = 0
-offset_top = 21.0
-offset_right = 40.0
-offset_bottom = 44.0
-text = "$3"
+offset_left = 140.0
+offset_top = 10.0
+offset_right = 214.0
+offset_bottom = 45.0
+text = "$100"
+label_settings = ExtResource("5_fgdfb")
+horizontal_alignment = 1
+
+[node name="Wave Label" type="Label" parent="UI Manager"]
+layout_mode = 0
+offset_left = 1072.0
+offset_top = 73.0
+offset_right = 1144.0
+offset_bottom = 102.0
+text = "Wave: 1"
+label_settings = SubResource("LabelSettings_71d4j")
+horizontal_alignment = 1
+
+[node name="Population Label" type="Label" parent="UI Manager"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 13.0
+offset_right = 121.0
+offset_bottom = 48.0
+text = "3/3"
+label_settings = ExtResource("5_fgdfb")
+
+[node name="Food Label" type="Label" parent="UI Manager"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 72.0
+offset_right = 110.0
+offset_bottom = 107.0
+text = "10"
+label_settings = ExtResource("5_fgdfb")
+
+[node name="Housing Label" type="Label" parent="UI Manager"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 122.0
+offset_right = 102.0
+offset_bottom = 157.0
+text = "3"
+label_settings = ExtResource("5_fgdfb")
+
+[node name="Time Icon" type="TextureRect" parent="UI Manager"]
+layout_mode = 0
+offset_left = 1091.0
+offset_top = 16.0
+offset_right = 1135.0
+offset_bottom = 55.0
+texture = ExtResource("4_efn8y")
+expand_mode = 1
+stretch_mode = 4

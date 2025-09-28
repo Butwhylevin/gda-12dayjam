@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b76cd2uunogvs"]
+[gd_scene load_steps=7 format=3 uid="uid://b76cd2uunogvs"]
 
-[ext_resource type="Script" uid="uid://br12inw0klxte" path="res://Scenes/tower.gd" id="1_mh5eo"]
+[ext_resource type="Script" uid="uid://br12inw0klxte" path="res://Scripts/tower.gd" id="1_mh5eo"]
 [ext_resource type="PackedScene" uid="uid://7sbwxli3jgo7" path="res://Scenes/projectile.tscn" id="2_ou3m2"]
 [ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="2_tghyl"]
+[ext_resource type="Script" uid="uid://rjecxtpjt8ee" path="res://Scenes/farm_day_behavior.gd" id="4_ou3m2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5a7ea"]
 radius = 137.48091
@@ -35,6 +36,9 @@ collision_layer = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TowerCollider"]
 shape = SubResource("CircleShape2D_tghyl")
+
+[node name="Day Behavior" type="Node2D" parent="."]
+script = ExtResource("4_ou3m2")
 
 [connection signal="area_entered" from="Tower Range" to="." method="_on_tower_range_area_entered"]
 [connection signal="area_exited" from="Tower Range" to="." method="_on_tower_range_area_exited"]

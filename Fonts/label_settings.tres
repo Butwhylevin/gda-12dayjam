@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dwsba62rc6qgo"]
+
+[ext_resource type="FontFile" uid="uid://bnexor3wenf86" path="res://Fonts/ITCKRIST.TTF" id="1_cox4j"]
+
+[resource]
+font = ExtResource("1_cox4j")
+font_size = 25

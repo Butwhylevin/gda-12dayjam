@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo23crrwg3b6j"]
+[gd_scene load_steps=12 format=3 uid="uid://bo23crrwg3b6j"]
 
-[ext_resource type="PackedScene" uid="uid://dh0gwxbq6rnao" path="res://Scenes/enemy.tscn" id="1_a02cp"]
-[ext_resource type="Script" uid="uid://b3stokrlyi8hm" path="res://Scenes/enemy_controller.gd" id="1_go701"]
+[ext_resource type="Script" uid="uid://b3stokrlyi8hm" path="res://Scripts/enemy_controller.gd" id="1_go701"]
+[ext_resource type="Script" uid="uid://bsgscgpeh6asf" path="res://Scripts/enemy_wave.gd" id="2_o06y3"]
 [ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/tower.tscn" id="3_5a7ea"]
-[ext_resource type="Script" uid="uid://btfwe2hnthc5d" path="res://Scenes/tower_manager.gd" id="3_8j60k"]
+[ext_resource type="Script" uid="uid://btfwe2hnthc5d" path="res://Scripts/tower_manager.gd" id="3_8j60k"]
+[ext_resource type="Resource" uid="uid://bedqlppkbcgpd" path="res://Resources/Wave/wave_1.tres" id="3_k7acu"]
+[ext_resource type="Resource" uid="uid://di1v54sk44436" path="res://Resources/Wave/wave_2.tres" id="4_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="5_fo5ed"]
 [ext_resource type="Texture2D" uid="uid://cw7eigago7mam" path="res://Sprites/circle.png" id="6_5ukr8"]
 
@@ -21,8 +23,10 @@ radius = 60.0
 [node name="World" type="Node2D"]
 
 [node name="Enemy Controller" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_go701")
 spawn_wait = 0.1
+enemy_waves = Array[ExtResource("2_o06y3")]([ExtResource("3_k7acu"), ExtResource("4_k7acu")])
 
 [node name="Path Area" type="Area2D" parent="Enemy Controller"]
 collision_layer = 16
@@ -32,9 +36,6 @@ polygon = PackedVector2Array(941, -4, 855, 45, 737, 53, 598, 35, 455, 25, 338, 4
 
 [node name="EnemyPath" type="Path2D" parent="Enemy Controller"]
 curve = SubResource("Curve2D_yp4wr")
-
-[node name="Enemy" parent="Enemy Controller/EnemyPath" instance=ExtResource("1_a02cp")]
-position = Vector2(952, 28)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
