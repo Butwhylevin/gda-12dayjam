@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmh03l15of6fr"]
+
+[ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/tower.tscn" id="1_mnfw7"]
+[ext_resource type="Texture2D" uid="uid://b3w7tasihlwfl" path="res://Sprites/house-icon.png" id="2_sslic"]
+[ext_resource type="Script" uid="uid://tvlhh7rg2pnk" path="res://Scenes/house_day_behavior.gd" id="3_cjnak"]
+[ext_resource type="PackedScene" uid="uid://d3w1y7ondx35h" path="res://Scenes/trap.tscn" id="4_1ttc5"]
+
+[node name="Tower" instance=ExtResource("1_mnfw7")]
+bullet_scene = null
+do_shooting = false
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_sslic")
+
+[node name="Day Behavior" type="Node2D" parent="." index="3"]
+script = ExtResource("3_cjnak")
+trap_scene = ExtResource("4_1ttc5")
+tower_radius = 100.0

@@ -4,6 +4,7 @@ extends Node2D
 # inspector attributes
 @export var shoot_wait = 0.2
 @export var bullet_scene : PackedScene
+@export var do_shooting = true
 
 # references
 @onready var tower_range : Area2D = $"Tower Range"
@@ -12,7 +13,8 @@ extends Node2D
 
 ## BASE FUNCTIONS
 func _process(delta: float) -> void:
-	shooting_behavior(delta)
+	if do_shooting:
+		shooting_behavior(delta)
 
 ## OTHER FUNCTIONS
 #region Shooting

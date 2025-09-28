@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3w1y7ondx35h"]
+
+[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="1_0juii"]
+[ext_resource type="Script" uid="uid://c730v2270ioxq" path="res://Scripts/projectile.gd" id="2_xmcxk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmcxk"]
+radius = 59.999992
+
+[node name="Trap" type="Area2D"]
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_xmcxk")
+speed = 0
+damage = 5
+stun_time = 0.0
+lifetime = 10000.0
+lead_time = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0juii")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xmcxk")

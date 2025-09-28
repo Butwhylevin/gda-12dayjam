@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bisgdc6a1cif6"]
+
+[ext_resource type="LabelSettings" uid="uid://dwsba62rc6qgo" path="res://Fonts/label_settings.tres" id="1_2nprw"]
+[ext_resource type="Script" uid="uid://dpy1h1mtt312e" path="res://Scripts/popup.gd" id="2_qml6d"]
+
+[node name="Popup" type="Label"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -615.5
+offset_right = -536.5
+offset_bottom = 35.0
+grow_horizontal = 2
+pivot_offset = Vector2(39.5, 0)
+text = "Popup"
+label_settings = ExtResource("1_2nprw")
+horizontal_alignment = 1
+script = ExtResource("2_qml6d")

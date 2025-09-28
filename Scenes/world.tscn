@@ -1,17 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo23crrwg3b6j"]
+[gd_scene load_steps=17 format=3 uid="uid://bo23crrwg3b6j"]
 
 [ext_resource type="Script" uid="uid://b3stokrlyi8hm" path="res://Scripts/enemy_controller.gd" id="1_go701"]
 [ext_resource type="Script" uid="uid://bsgscgpeh6asf" path="res://Scripts/enemy_wave.gd" id="2_o06y3"]
-[ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/tower.tscn" id="3_5a7ea"]
 [ext_resource type="Script" uid="uid://btfwe2hnthc5d" path="res://Scripts/tower_manager.gd" id="3_8j60k"]
 [ext_resource type="Resource" uid="uid://bedqlppkbcgpd" path="res://Resources/Wave/wave_1.tres" id="3_k7acu"]
 [ext_resource type="Resource" uid="uid://di1v54sk44436" path="res://Resources/Wave/wave_2.tres" id="4_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="5_fo5ed"]
+[ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="6_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://cw7eigago7mam" path="res://Sprites/circle.png" id="6_5ukr8"]
+[ext_resource type="Resource" uid="uid://c086pbkkf05xf" path="res://Resources/Tower Attributes/farm_tower.tres" id="7_ikia7"]
+[ext_resource type="Resource" uid="uid://dmaachmkm3syb" path="res://Resources/Tower Attributes/house_tower.tres" id="8_7yui6"]
+[ext_resource type="FontFile" uid="uid://bnexor3wenf86" path="res://Fonts/ITCKRIST.TTF" id="9_5v1tr"]
+[ext_resource type="PackedScene" uid="uid://bisgdc6a1cif6" path="res://Scenes/popup.tscn" id="10_0fj1v"]
 
 [sub_resource type="Curve2D" id="Curve2D_yp4wr"]
+bake_interval = 3.0
 _data = {
-"points": PackedVector2Array(189.00201, -155.727, -189.00201, 155.727, 952, 28, 215.69, -179.24, -215.69, 179.24, 222, 126, -134, -108, 134, 108, 714, 255, 3, -112, -3, 112, 120, 417, -19.965002, -79.86001, 19.965002, 79.86001, 1070, 588)
+"points": PackedVector2Array(189.00201, -155.727, -189.00201, 155.727, 952, 28, 215.69, -179.24, -215.69, 179.24, 222, 126, -134, -108, 134, 108, 714, 255, 3, -112, -3, 112, 120, 417, -19.965002, -79.86001, 19.965002, 79.86001, 1075, 502)
 }
 point_count = 5
 
@@ -19,6 +24,10 @@ point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fo5ed"]
 radius = 60.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0fj1v"]
+font = ExtResource("9_5v1tr")
+font_size = 40
 
 [node name="World" type="Node2D"]
 
@@ -32,7 +41,7 @@ enemy_waves = Array[ExtResource("2_o06y3")]([ExtResource("3_k7acu"), ExtResource
 collision_layer = 16
 
 [node name="Enemy Path Polygon" type="CollisionPolygon2D" parent="Enemy Controller/Path Area"]
-polygon = PackedVector2Array(941, -4, 855, 45, 737, 53, 598, 35, 455, 25, 338, 40, 191, 116, 150, 200, 209, 231, 351, 233, 631, 237, 698, 276, 628, 306, 448, 316, 218, 339, 112, 379, 103, 443, 150, 478, 532, 532, 990, 583, 977, 657, 1180, 684, 1173, 591, 998, 528, 171, 436, 163, 402, 330, 370, 682, 337, 751, 292, 737, 239, 660, 201, 260, 198, 217, 181, 233, 142, 366, 75, 607, 86, 743, 113, 886, 95, 1020, 27, 1019, -17)
+polygon = PackedVector2Array(941, -4, 855, 45, 737, 53, 598, 35, 455, 25, 338, 40, 191, 116, 150, 200, 209, 231, 351, 233, 631, 237, 698, 276, 628, 306, 448, 316, 218, 339, 112, 379, 103, 443, 150, 478, 527, 507, 977, 530, 1154, 578, 1159, 460, 977, 444, 171, 436, 163, 402, 330, 370, 682, 337, 751, 292, 737, 239, 660, 201, 260, 198, 217, 181, 233, 142, 366, 75, 607, 86, 743, 113, 886, 95, 1020, 27, 1019, -17)
 
 [node name="EnemyPath" type="Path2D" parent="Enemy Controller"]
 curve = SubResource("Curve2D_yp4wr")
@@ -45,7 +54,7 @@ limit_bottom = 648
 
 [node name="Tower Manager" type="Node2D" parent="."]
 script = ExtResource("3_8j60k")
-tower_scene = ExtResource("3_5a7ea")
+towers = Array[ExtResource("6_0fj1v")]([ExtResource("7_ikia7"), ExtResource("8_7yui6")])
 
 [node name="Build Preview" type="Sprite2D" parent="Tower Manager"]
 modulate = Color(1, 1, 1, 0.36078432)
@@ -63,3 +72,18 @@ shape = SubResource("CircleShape2D_fo5ed")
 [node name="Range Preview" type="Sprite2D" parent="Tower Manager/Build Preview"]
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("6_5ukr8")
+
+[node name="Label" type="Label" parent="Tower Manager/Build Preview"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.0
+offset_top = -115.0
+offset_right = -14.0
+offset_bottom = -42.0
+grow_horizontal = 2
+text = "Farm"
+label_settings = SubResource("LabelSettings_0fj1v")
+horizontal_alignment = 1
+
+[node name="Popup" parent="." instance=ExtResource("10_0fj1v")]

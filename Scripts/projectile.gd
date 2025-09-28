@@ -12,6 +12,7 @@ var velocity
 
 func _ready() -> void:
 	cur_lifetime = lifetime
+	GameManager.on_day_start.connect(die)
 
 var cur_lifetime
 func _physics_process(delta: float) -> void:
@@ -21,6 +22,9 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = speed * transform.x
 	translate(velocity * delta)
+
+func die():
+	queue_free()
 
 func on_hit_enemy(_enemy_hit : Area2D):
 	cur_pierce -= 1

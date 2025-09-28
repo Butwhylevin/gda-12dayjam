@@ -25,7 +25,7 @@ font_size = 18
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_oj352")
-start_money = 100
+start_money = 3
 fast_forwards_speed = 4
 
 [node name="UI Manager" type="Control" parent="."]
@@ -154,8 +154,8 @@ offset_top = 10.0
 offset_right = 392.0
 offset_bottom = 125.0
 bbcode_enabled = true
-text = "label"
-autowrap_mode = 2
+text = "[color=BLACK][font=res://Fonts/ITCKRIST.TTF][font_size=25]Farm: $50 -1 [img={30}]Sprites/pop-icon.png[/img], +1 [img={30}]Sprites/house-icon.png[/img][/font_size]
+Shoots a weak pistol projectile, generates 2 [img={30}]Sprites/food-icon.png[/img] each day."
 script = ExtResource("10_kmrvs")
 
 [node name="Popup Manager" type="Node2D" parent="."]

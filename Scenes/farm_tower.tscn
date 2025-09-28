@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://co5tt3kysvk3r"]
+
+[ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/tower.tscn" id="1_dlvs4"]
+[ext_resource type="Script" uid="uid://rjecxtpjt8ee" path="res://Scenes/farm_day_behavior.gd" id="2_60dh8"]
+
+[node name="Tower" instance=ExtResource("1_dlvs4")]
+
+[node name="Day Behavior" type="Node2D" parent="." index="3"]
+script = ExtResource("2_60dh8")
+food_gain = 2
+
+[node name="PopupPoint" type="Node2D" parent="Day Behavior" index="0"]
+position = Vector2(0, -59)
