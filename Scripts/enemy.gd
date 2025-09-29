@@ -46,7 +46,6 @@ func do_stun(stun_time : float):
 # returns true if still alive
 func take_damage(damage : int) -> bool:
 	hp -= damage
-	AudioManager.play(hurt_sound)
 	
 	if (hp <= 0):
 		die(true)
@@ -68,6 +67,7 @@ func die(was_killed : bool):
 		
 	has_died = true
 	if was_killed: 
+		AudioManager.play(hurt_sound)
 		# do death particles
 		var death_part : GPUParticles2D = death_part_scene.instantiate()
 		spawner.add_child(death_part)

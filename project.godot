@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gade-12dayjam"
-run/main_scene="uid://bo23crrwg3b6j"
+run/main_scene="uid://cqu0leuyvm5v5"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,9 +20,26 @@ config/icon="res://icon.svg"
 GameManager="*res://Scenes/game_manager.tscn"
 AudioManager="*res://Scenes/audio_manager.tscn"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/stretch/scale=1.65
+
 [dotnet]
 
 project/assembly_name="gade-12dayjam"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/levin/Videos/OBS Recordings/Tower Defense/cool_recording.avi"
+
+[gui]
+
+theme/custom_font="uid://bnexor3wenf86"
 
 [input]
 
@@ -63,3 +80,8 @@ decrease_selected_tower={
 2d_physics/layer_3="Projectile"
 2d_physics/layer_4="Range"
 2d_physics/layer_5="Tower Blocker"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

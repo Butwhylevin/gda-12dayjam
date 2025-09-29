@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TowerResource" load_steps=4 format=3 uid="uid://c086pbkkf05xf"]
 
-[ext_resource type="PackedScene" uid="uid://co5tt3kysvk3r" path="res://Scenes/farm_tower.tscn" id="1_63858"]
+[ext_resource type="PackedScene" uid="uid://co5tt3kysvk3r" path="res://Scenes/Tower/farm_tower.tscn" id="1_63858"]
 [ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="2_3jpgi"]
 [ext_resource type="Texture2D" uid="uid://db6t0uvsphb0f" path="res://Sprites/farm-icon.png" id="3_63858"]
 

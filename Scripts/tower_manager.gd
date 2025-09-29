@@ -8,6 +8,7 @@ var tower_index = 0
 @onready var build_tower_area : Area2D = $"Build Preview/Build Area"
 @onready var build_tower_name : Label = $"Build Preview/Label"
 @onready var fail_build_audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var build_tower_range : Sprite2D = $"Build Preview/Range Preview"
 
 func _ready() -> void:
 	build_tower_preview.visible = placing_tower
@@ -49,6 +50,7 @@ func change_selected_tower(change : int):
 	# update preview
 	build_tower_preview.texture = towers[tower_index].sprite
 	build_tower_name.text = towers[tower_index].name
+	build_tower_range.scale = Vector2(towers[tower_index].radius, towers[tower_index].radius)
 	
 	#build_tower_preview.
 
@@ -56,6 +58,7 @@ func toggle_build_mode():
 	placing_tower = !placing_tower
 	change_selected_tower(0)
 	build_tower_preview.visible = placing_tower
+	
 	GameManager.ui_manager.set_tower_visible(placing_tower)
 
 func can_afford_tower() -> bool:

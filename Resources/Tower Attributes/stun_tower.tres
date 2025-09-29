@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TowerResource" load_steps=4 format=3 uid="uid://b4n57ctqoen35"]
+
+[ext_resource type="PackedScene" uid="uid://et8y6alnjl7" path="res://Scenes/Tower/stun_tower.tscn" id="1_jiyfk"]
+[ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="2_lj75f"]
+[ext_resource type="Texture2D" uid="uid://p7pqcke7jogv" path="res://Sprites/stun-icon.png" id="3_jiyfk"]
+
+[resource]
+script = ExtResource("2_lj75f")
+name = "Freeze Pylon"
+desc = "Shoots a low damage, high pierce projectile that stuns hit enemies. Needs food to be built because it makes the builders really hungry."
+scene = ExtResource("1_jiyfk")
+cost = 200
+food_cost = 5
+pop_cost = 1
+sprite = ExtResource("3_jiyfk")
+radius = 1.0
+size = 0.4
+metadata/_custom_type_script = "uid://d3vbu2jgiy8e5"

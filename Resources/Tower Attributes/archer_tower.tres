@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TowerResource" load_steps=4 format=3 uid="uid://bv4e5xvuajqxb"]
+
+[ext_resource type="PackedScene" uid="uid://du2v86trkrc7u" path="res://Scenes/Tower/archer_tower.tscn" id="1_i5wn0"]
+[ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="2_r6lov"]
+[ext_resource type="Texture2D" uid="uid://lwasye7tn0nu" path="res://Sprites/tower-icon.png" id="3_i5wn0"]
+
+[resource]
+script = ExtResource("2_r6lov")
+name = "Archer"
+desc = "Shoots a long-range, powerful arrow"
+scene = ExtResource("1_i5wn0")
+cost = 200
+pop_cost = 2
+sprite = ExtResource("3_i5wn0")
+radius = 2.0
+size = 0.4
+metadata/_custom_type_script = "uid://d3vbu2jgiy8e5"

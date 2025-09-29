@@ -2,6 +2,7 @@ extends Node
 
 var current_scene = null
 
+@export var game_active = false
 @export var start_health = 100
 @export var start_money = 0
 @export var wave_reward_money = 100
@@ -10,6 +11,8 @@ var current_scene = null
 @export var start_housing = 3
 @export var fast_forwards_speed = 2
 @export var win_wave_sound : AudioStream
+@export var lose_life_sound : AudioStream
+@export var start_scene : String
 
 signal on_day_start
 signal on_night_start
@@ -41,10 +44,14 @@ func reset():
 	pop = start_pop
 	open_pop = pop
 	housing = start_housing
+	game_active = false
 	
 	ui_manager.update_all()
 
 func _input(event: InputEvent) -> void:
+	if !game_active:
+		return
+	
 	if event.is_action_pressed("toggle_fast_forwards"):
 		toggle_fast_forwards()
 	
@@ -57,7 +64,7 @@ func _input(event: InputEvent) -> void:
 var is_day : bool = true
 
 func start_day():
-	AudioManager.play(win_wave_sound)
+	AudioManager.force_play(win_wave_sound)
 	is_day = true
 	ui_manager.update_time()
 	money_changed(wave_reward_money)
@@ -105,13 +112,13 @@ func consume_resources_for_pop():
 #region Public Functions
 func player_take_damage(damage : int):
 	player_health -= damage
+	AudioManager.play(lose_life_sound)
 	ui_manager.update_hp()
 	if player_health <= 0:
 		player_die()
 
 func player_die():
-	# TODO: rework to send to a different scene to make it a bit easier
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file(start_scene)
 
 # Changing Player Values
 func use_population(to_use : int):

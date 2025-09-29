@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://et8y6alnjl7"]
+
+[ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/Tower/tower.tscn" id="1_22ace"]
+[ext_resource type="Texture2D" uid="uid://p7pqcke7jogv" path="res://Sprites/stun-icon.png" id="2_75bd2"]
+[ext_resource type="PackedScene" uid="uid://c1s3ilrm1r1l3" path="res://Scenes/Tower/stun_projectile.tscn" id="2_anix1"]
+
+[node name="Tower" instance=ExtResource("1_22ace")]
+shoot_wait = 0.5
+bullet_scene = ExtResource("2_anix1")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_75bd2")

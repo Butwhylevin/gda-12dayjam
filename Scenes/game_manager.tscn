@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://ceb7uwikob31y"]
+[gd_scene load_steps=19 format=3 uid="uid://ceb7uwikob31y"]
 
 [ext_resource type="Script" uid="uid://ca3p867fbb553" path="res://Scripts/game_manager.gd" id="1_oj352"]
 [ext_resource type="Script" uid="uid://cjrjkthydq318" path="res://Scripts/ui_manager.gd" id="2_e5fcp"]
 [ext_resource type="AudioStream" uid="uid://d3d0cy5n1166c" path="res://audio/win-wave.ogg" id="2_e6ru4"]
+[ext_resource type="AudioStream" uid="uid://dr4w16lgfpgj1" path="res://audio/lose-life.wav" id="3_hjqsb"]
 [ext_resource type="FontFile" uid="uid://bnexor3wenf86" path="res://Fonts/ITCKRIST.TTF" id="3_sq00h"]
 [ext_resource type="Texture2D" uid="uid://3yptkhbr34hi" path="res://Sprites/moon-icon.png" id="4_efn8y"]
 [ext_resource type="Texture2D" uid="uid://hroaxtbti5b" path="res://Sprites/HUD.png" id="4_mmt5l"]
@@ -13,6 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://dmiat5k42clii" path="res://Sprites/HUD-tower.png" id="9_jencv"]
 [ext_resource type="PackedScene" uid="uid://bisgdc6a1cif6" path="res://Scenes/popup.tscn" id="10_b5cn8"]
 [ext_resource type="Script" uid="uid://wa4cvpsa7cgy" path="res://Scripts/tower_label.gd" id="10_kmrvs"]
+[ext_resource type="AudioStream" uid="uid://ckee2rfxt2kvm" path="res://audio/Zombie Chase.mp3" id="14_sm5re"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sm5re"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("3_hjqsb")
 
 [sub_resource type="LabelSettings" id="LabelSettings_yqty0"]
 font = ExtResource("3_sq00h")
@@ -29,8 +36,11 @@ script = ExtResource("1_oj352")
 start_money = 100
 fast_forwards_speed = 4
 win_wave_sound = ExtResource("2_e6ru4")
+lose_life_sound = SubResource("AudioStreamRandomizer_sm5re")
+start_scene = "res://Scenes/start_scene.tscn"
 
 [node name="UI Manager" type="Control" parent="."]
+z_index = 10
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -166,3 +176,8 @@ font_ref = ExtResource("3_sq00h")
 script = ExtResource("9_i4mau")
 popup_scene = ExtResource("10_b5cn8")
 popup_velocity = Vector2(0, -15)
+
+[node name="Music Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_sm5re")
+autoplay = true
+parameters/looping = true

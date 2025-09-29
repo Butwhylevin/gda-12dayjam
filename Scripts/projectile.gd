@@ -5,7 +5,6 @@ extends Area2D
 @export var pierce = 1
 @export var stun_time = 0.1
 @export var lifetime = 0.3
-@export var lead_time = 0.1
 
 @onready var cur_pierce = pierce
 var velocity

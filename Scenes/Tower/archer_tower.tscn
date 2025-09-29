@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://du2v86trkrc7u"]
+
+[ext_resource type="PackedScene" uid="uid://b76cd2uunogvs" path="res://Scenes/Tower/tower.tscn" id="1_iakpu"]
+[ext_resource type="PackedScene" uid="uid://qivwm1yv8732" path="res://Scenes/Tower/archer_projectile.tscn" id="2_6kyb4"]
+[ext_resource type="Texture2D" uid="uid://lwasye7tn0nu" path="res://Sprites/tower-icon.png" id="2_em4tx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_em4tx"]
+radius = 300.0
+
+[node name="Archer Tower" instance=ExtResource("1_iakpu")]
+shoot_wait = 0.5
+bullet_scene = ExtResource("2_6kyb4")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_em4tx")
+
+[node name="CollisionShape2D" parent="Tower Range" index="0"]
+shape = SubResource("CircleShape2D_em4tx")
