@@ -13,5 +13,5 @@ cost = 200
 pop_cost = 2
 sprite = ExtResource("3_i5wn0")
 radius = 2.0
-size = 0.4
+size = 0.3
 metadata/_custom_type_script = "uid://d3vbu2jgiy8e5"

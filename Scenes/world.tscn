@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://bedqlppkbcgpd" path="res://Resources/Wave/wave_1.tres" id="3_k7acu"]
 [ext_resource type="Resource" uid="uid://di1v54sk44436" path="res://Resources/Wave/wave_2.tres" id="4_k7acu"]
 [ext_resource type="Resource" uid="uid://b4ymp04gqxd6" path="res://Resources/Wave/wave_3.tres" id="5_c5t2i"]
-[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="6_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://cw7eigago7mam" path="res://Sprites/circle.png" id="6_5ukr8"]
 [ext_resource type="Resource" uid="uid://bmw1neyxvsq6p" path="res://Resources/Wave/wave_4.tres" id="6_e0ngr"]
@@ -24,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://b4n57ctqoen35" path="res://Resources/Tower Attributes/stun_tower.tres" id="13_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://dpn4vkh6df2gi" path="res://Sprites/map.png" id="16_hgpy0"]
 [ext_resource type="Texture2D" uid="uid://fij5mchhpbhh" path="res://Sprites/night-overlay.png" id="19_axeuq"]
+[ext_resource type="Texture2D" uid="uid://db6t0uvsphb0f" path="res://Sprites/farm-icon.png" id="19_i4fjy"]
 [ext_resource type="Script" uid="uid://jvxwnlukqhoc" path="res://Scenes/night_overlay.gd" id="20_1cojt"]
 
 [sub_resource type="Curve2D" id="Curve2D_yp4wr"]
@@ -36,7 +36,7 @@ point_count = 5
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fo5ed"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fo5ed"]
-radius = 60.0
+radius = 25.124687
 
 [sub_resource type="LabelSettings" id="LabelSettings_0fj1v"]
 font = ExtResource("9_5v1tr")
@@ -80,7 +80,7 @@ top_level = true
 z_index = 11
 material = SubResource("CanvasItemMaterial_fo5ed")
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("5_fo5ed")
+texture = ExtResource("19_i4fjy")
 
 [node name="Build Area" type="Area2D" parent="Tower Manager/Build Preview"]
 collision_mask = 16
@@ -98,11 +98,12 @@ z_index = 11
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -114.0
+offset_left = -88.5
 offset_top = -115.0
-offset_right = -14.0
+offset_right = 11.5
 offset_bottom = -42.0
 grow_horizontal = 2
+pivot_offset = Vector2(50, 0)
 text = "Farm"
 label_settings = SubResource("LabelSettings_0fj1v")
 horizontal_alignment = 1

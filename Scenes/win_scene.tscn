@@ -24,13 +24,6 @@ z_index = -1
 position = Vector2(573, 327)
 texture = ExtResource("2_6nioa")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.6, 1.6)
-limit_left = 0
-limit_top = 0
-limit_right = 1152
-limit_bottom = 648
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -71,9 +64,7 @@ bbcode_enabled = true
 text = "[font_size=30] uhhhhh
 uhhhhhhhh
 um
-good job
-
-idk if thiz iz pozzible tbh, playtezting iz for lozerz"
+good job"
 horizontal_alignment = 1
 justification_flags = 162
 
@@ -94,5 +85,11 @@ offset_top = 144.0
 offset_right = 916.0
 offset_bottom = 168.0
 texture = ExtResource("5_u7m77")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
 
 [connection signal="pressed" from="Control/TextureRect/Button" to="." method="_on_button_pressed"]

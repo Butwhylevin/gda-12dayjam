@@ -78,6 +78,7 @@ func start_new_wave():
 	if cur_wave >= enemy_waves.size():
 		print("game done lol")
 		game_complete = true
+		GameManager.win_game()
 		return
 	
 	can_start_new_wave = false

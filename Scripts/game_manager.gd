@@ -13,6 +13,7 @@ var current_scene = null
 @export var win_wave_sound : AudioStream
 @export var lose_life_sound : AudioStream
 @export var start_scene : String
+@export var win_scene : String
 
 signal on_day_start
 signal on_night_start
@@ -28,12 +29,15 @@ var open_pop : int
 var housing : int
 
 var is_fast_forwarding = false
+var audio_player : AudioStreamPlayer2D
 
 #region Base Functions
 func _ready():
 	var root = get_tree().root
 	# Using a negative index counts from the end, so this gets the last child node of `root`.
 	current_scene = root.get_child(-1)
+	audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
 	
 	reset()
 
@@ -64,7 +68,8 @@ func _input(event: InputEvent) -> void:
 var is_day : bool = true
 
 func start_day():
-	AudioManager.force_play(win_wave_sound)
+	audio_player.stream = win_wave_sound
+	audio_player.play()
 	is_day = true
 	ui_manager.update_time()
 	money_changed(wave_reward_money)
@@ -112,7 +117,8 @@ func consume_resources_for_pop():
 #region Public Functions
 func player_take_damage(damage : int):
 	player_health -= damage
-	AudioManager.play(lose_life_sound)
+	audio_player.stream = lose_life_sound
+	audio_player.play()
 	ui_manager.update_hp()
 	if player_health <= 0:
 		player_die()
@@ -132,6 +138,10 @@ func housing_changed(change : int):
 func money_changed(change : int):
 	money += change
 	ui_manager.update_money()
+
+func win_game():
+	get_tree().change_scene_to_file(win_scene)
+	game_active = false
 
 func food_changed(change : int):
 	food += change

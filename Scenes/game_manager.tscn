@@ -34,10 +34,10 @@ font_size = 18
 [node name="GameManager" type="Node"]
 script = ExtResource("1_oj352")
 start_money = 100
-fast_forwards_speed = 4
 win_wave_sound = ExtResource("2_e6ru4")
 lose_life_sound = SubResource("AudioStreamRandomizer_sm5re")
 start_scene = "res://Scenes/start_scene.tscn"
+win_scene = "res://Scenes/win_scene.tscn"
 
 [node name="UI Manager" type="Control" parent="."]
 z_index = 10

@@ -12,4 +12,3 @@ class_name TowerResource extends Resource
 @export var sprite : Texture2D
 
 @export var radius : float
-@export var size : float
