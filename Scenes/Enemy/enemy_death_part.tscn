@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp5o6iop7u5k6"]
+
+[ext_resource type="Texture2D" uid="uid://b6xo4xetgvcxi" path="res://Sprites/Zombies/zombie-blood.png" id="1_m0eed"]
+
+[sub_resource type="Curve" id="Curve_pqgp3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7458255, 0.9821428), -1.0764788, -1.0764788, 0, 0, Vector2(0.9833023, 0), -2.9409757, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4ad2a"]
+curve = SubResource("Curve_pqgp3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kiqm3"]
+particle_flag_disable_z = true
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 152.53
+gravity = Vector3(0, 0, 0)
+damping_min = 350.0
+damping_max = 400.0
+scale_min = 0.099999994
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_4ad2a")
+
+[node name="Enemy Death Part" type="GPUParticles2D"]
+emitting = false
+texture = ExtResource("1_m0eed")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_kiqm3")

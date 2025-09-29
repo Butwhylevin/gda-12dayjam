@@ -10,8 +10,12 @@ extends Node2D
 @onready var tower_range : Area2D = $"Tower Range"
 @onready var enemy_path : Path2D = $"/root/World/Enemy Controller/EnemyPath"
 @onready var debug_circle : Node2D = $"Debug Point"
+@onready var anim : AnimationPlayer = $Sprite/AnimationPlayer
 
 ## BASE FUNCTIONS
+func _ready() -> void:
+	anim.play("tower_place")
+
 func _process(delta: float) -> void:
 	if do_shooting:
 		shooting_behavior(delta)

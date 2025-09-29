@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://svvxa4aan12l"]
+
+[ext_resource type="PackedScene" uid="uid://dh0gwxbq6rnao" path="res://Scenes/Enemy/enemy.tscn" id="1_0yu41"]
+[ext_resource type="Texture2D" uid="uid://bov4xj125tw3b" path="res://Sprites/Zombies/strong-zomb.png" id="2_6ccqw"]
+
+[node name="Strong Enemy" instance=ExtResource("1_0yu41")]
+sprites = Array[Texture]([ExtResource("2_6ccqw")])
+speed = 100.0
+hp = 50
+money_reward = 25
+
+[node name="Sprite2D" parent="Sprite Holder" index="1"]
+texture = ExtResource("2_6ccqw")

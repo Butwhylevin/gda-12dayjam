@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4gvvmkejpv5u"]
+
+[ext_resource type="PackedScene" uid="uid://dh0gwxbq6rnao" path="res://Scenes/Enemy/enemy.tscn" id="1_p10sy"]
+[ext_resource type="Texture2D" uid="uid://ykmeyhmx8kye" path="res://Sprites/Zombies/slow-zomb.png" id="2_s477h"]
+
+[node name="Slow Enemy" instance=ExtResource("1_p10sy")]
+sprites = Array[Texture]([ExtResource("2_s477h")])
+speed = 150.0
+hp = 10
+money_reward = 5
+
+[node name="Sprite2D" parent="Sprite Holder" index="1"]
+texture = ExtResource("2_s477h")

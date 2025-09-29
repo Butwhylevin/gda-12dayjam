@@ -42,5 +42,9 @@ func update_tower(tower : TowerResource):
 
 func update_resources():
 	pop_label.set_text(str(GameManager.open_pop) + "/" + str(GameManager.pop))
-	food_label.set_text(str(GameManager.food))
-	house_label.set_text(str(GameManager.housing))
+	
+	var daily = -GameManager.pop + GameManager.daily_food
+	var symbol = " +" if daily >= 0 else " "
+	food_label.set_text(str(GameManager.food) + symbol + str(daily))
+	
+	house_label.set_text(str(GameManager.pop) + "/" + str(GameManager.housing))

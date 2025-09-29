@@ -7,6 +7,8 @@ extends Node2D
 func _ready() -> void:
 	GameManager.on_day_start.connect(start_day_behavior)
 	GameManager.on_night_start.connect(end_day_behavior)
+	GameManager.daily_food += food_gain
+	GameManager.ui_manager.update_resources()
 
 func start_day_behavior():
 	GameManager.food_changed(food_gain)

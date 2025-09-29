@@ -1,17 +1,21 @@
-[gd_scene load_steps=17 format=3 uid="uid://bo23crrwg3b6j"]
+[gd_scene load_steps=22 format=3 uid="uid://bo23crrwg3b6j"]
 
 [ext_resource type="Script" uid="uid://b3stokrlyi8hm" path="res://Scripts/enemy_controller.gd" id="1_go701"]
 [ext_resource type="Script" uid="uid://bsgscgpeh6asf" path="res://Scripts/enemy_wave.gd" id="2_o06y3"]
 [ext_resource type="Script" uid="uid://btfwe2hnthc5d" path="res://Scripts/tower_manager.gd" id="3_8j60k"]
 [ext_resource type="Resource" uid="uid://bedqlppkbcgpd" path="res://Resources/Wave/wave_1.tres" id="3_k7acu"]
 [ext_resource type="Resource" uid="uid://di1v54sk44436" path="res://Resources/Wave/wave_2.tres" id="4_k7acu"]
+[ext_resource type="Resource" uid="uid://b4ymp04gqxd6" path="res://Resources/Wave/wave_3.tres" id="5_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="6_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://cw7eigago7mam" path="res://Sprites/circle.png" id="6_5ukr8"]
+[ext_resource type="Resource" uid="uid://bmw1neyxvsq6p" path="res://Resources/Wave/wave_4.tres" id="6_e0ngr"]
 [ext_resource type="Resource" uid="uid://c086pbkkf05xf" path="res://Resources/Tower Attributes/farm_tower.tres" id="7_ikia7"]
+[ext_resource type="Resource" uid="uid://bv4c02nvnd468" path="res://Resources/Wave/wave_5.tres" id="7_kn0ld"]
 [ext_resource type="Resource" uid="uid://dmaachmkm3syb" path="res://Resources/Tower Attributes/house_tower.tres" id="8_7yui6"]
 [ext_resource type="FontFile" uid="uid://bnexor3wenf86" path="res://Fonts/ITCKRIST.TTF" id="9_5v1tr"]
-[ext_resource type="PackedScene" uid="uid://bisgdc6a1cif6" path="res://Scenes/popup.tscn" id="10_0fj1v"]
+[ext_resource type="AudioStream" uid="uid://ds341rh7yt64p" path="res://audio/not_enough_money.wav" id="12_7yui6"]
+[ext_resource type="Texture2D" uid="uid://dpn4vkh6df2gi" path="res://Sprites/map.png" id="16_hgpy0"]
 
 [sub_resource type="Curve2D" id="Curve2D_yp4wr"]
 bake_interval = 3.0
@@ -29,19 +33,24 @@ radius = 60.0
 font = ExtResource("9_5v1tr")
 font_size = 40
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c5t2i"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("12_7yui6")
+
 [node name="World" type="Node2D"]
 
 [node name="Enemy Controller" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_go701")
 spawn_wait = 0.1
-enemy_waves = Array[ExtResource("2_o06y3")]([ExtResource("3_k7acu"), ExtResource("4_k7acu")])
+enemy_waves = Array[ExtResource("2_o06y3")]([ExtResource("3_k7acu"), ExtResource("4_k7acu"), ExtResource("5_c5t2i"), ExtResource("6_e0ngr"), ExtResource("7_kn0ld")])
 
 [node name="Path Area" type="Area2D" parent="Enemy Controller"]
 collision_layer = 16
 
 [node name="Enemy Path Polygon" type="CollisionPolygon2D" parent="Enemy Controller/Path Area"]
-polygon = PackedVector2Array(941, -4, 855, 45, 737, 53, 598, 35, 455, 25, 338, 40, 191, 116, 150, 200, 209, 231, 351, 233, 631, 237, 698, 276, 628, 306, 448, 316, 218, 339, 112, 379, 103, 443, 150, 478, 527, 507, 977, 530, 1154, 578, 1159, 460, 977, 444, 171, 436, 163, 402, 330, 370, 682, 337, 751, 292, 737, 239, 660, 201, 260, 198, 217, 181, 233, 142, 366, 75, 607, 86, 743, 113, 886, 95, 1020, 27, 1019, -17)
+polygon = PackedVector2Array(949, 5, 856, 50, 741, 60, 609, 49, 460, 39, 348, 51, 250, 76, 191, 116, 170, 142, 159, 181, 179, 226, 293, 242, 398, 237, 623, 250, 698, 276, 628, 306, 448, 316, 228, 354, 112, 379, 93, 413, 103, 443, 150, 478, 298, 498, 533, 497, 977, 510, 1046, 523, 1103, 551, 1123, 519, 1070, 489, 976, 466, 547, 453, 308, 458, 171, 436, 135, 418, 309, 382, 617, 350, 722, 318, 741, 287, 724, 242, 645, 210, 461, 197, 260, 198, 202, 188, 209, 160, 239, 128, 345, 89, 469, 78, 613, 89, 752, 103, 829, 97, 881, 84, 947, 56, 987, 25, 995, 4)
 
 [node name="EnemyPath" type="Path2D" parent="Enemy Controller"]
 curve = SubResource("Curve2D_yp4wr")
@@ -86,4 +95,10 @@ text = "Farm"
 label_settings = SubResource("LabelSettings_0fj1v")
 horizontal_alignment = 1
 
-[node name="Popup" parent="." instance=ExtResource("10_0fj1v")]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Tower Manager"]
+stream = SubResource("AudioStreamRandomizer_c5t2i")
+
+[node name="Map" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(573, 327)
+texture = ExtResource("16_hgpy0")

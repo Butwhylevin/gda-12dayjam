@@ -1,20 +1,112 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh0gwxbq6rnao"]
+[gd_scene load_steps=16 format=3 uid="uid://dh0gwxbq6rnao"]
 
 [ext_resource type="Script" uid="uid://dbfo3p1ejwc56" path="res://Scripts/enemy.gd" id="1_nvvbs"]
-[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="2_2t2r4"]
+[ext_resource type="Texture2D" uid="uid://v0086uwi0kko" path="res://Sprites/Zombies/zomb-1.png" id="2_nvvbs"]
+[ext_resource type="Texture2D" uid="uid://csyd6r37on4q1" path="res://Sprites/Zombies/zomb-2.png" id="3_gx76c"]
+[ext_resource type="Texture2D" uid="uid://cbw0alct5ai40" path="res://Sprites/Zombies/zomb-3.png" id="4_pqgp3"]
+[ext_resource type="Texture2D" uid="uid://3md208xre58c" path="res://Sprites/Zombies/zomb-4.png" id="5_4ad2a"]
+[ext_resource type="Texture2D" uid="uid://c4pt880agxpd" path="res://Sprites/Zombies/zomb-5.png" id="6_kiqm3"]
+[ext_resource type="PackedScene" uid="uid://dp5o6iop7u5k6" path="res://Scenes/Enemy/enemy_death_part.tscn" id="7_pqgp3"]
+[ext_resource type="Shader" uid="uid://c33b1k2evi3lw" path="res://Scenes/Enemy/enemy_material.tres" id="8_4ad2a"]
+[ext_resource type="AudioStream" uid="uid://bb2brwyafvkak" path="res://audio/enemyHurt.wav" id="9_kiqm3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4ad2a"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("9_kiqm3")
+
+[sub_resource type="Animation" id="Animation_pqgp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1.8999993)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.279998, 0.45277777)]
+}
+
+[sub_resource type="Animation" id="Animation_gx76c"]
+resource_name = "enemy_anim"
+length = 0.30000335
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.16666667, 0.3),
+"transitions": PackedFloat32Array(1, 0.46651652, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.3), Vector2(0.3, 0.5), Vector2(0.3, 0.5), Vector2(0.6, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.16666667, 0.3),
+"transitions": PackedFloat32Array(1, 0.46651652, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1.25), Vector2(0, -1.5), Vector2(0, -1.5), Vector2(0, 1.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqgp3"]
+_data = {
+&"RESET": SubResource("Animation_pqgp3"),
+&"enemy_anim": SubResource("Animation_gx76c")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ad2a"]
+shader = ExtResource("8_4ad2a")
+shader_parameter/flash_color = Color(18.892157, 18.892157, 18.892157, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nvvbs"]
 
 [node name="Enemy" type="PathFollow2D"]
 rotates = false
 loop = false
 script = ExtResource("1_nvvbs")
+sprite_offset = Vector2(-15, 15)
+sprites = Array[Texture]([ExtResource("2_nvvbs"), ExtResource("3_gx76c"), ExtResource("4_pqgp3"), ExtResource("5_4ad2a"), ExtResource("6_kiqm3")])
 speed = 200.0
-hp = 3
+hp = 2
+hurt_sound = SubResource("AudioStreamRandomizer_4ad2a")
+death_part_scene = ExtResource("7_pqgp3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_2t2r4")
+[node name="Sprite Holder" type="Node2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite Holder"]
+libraries = {
+&"": SubResource("AnimationLibrary_pqgp3")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite Holder"]
+material = SubResource("ShaderMaterial_4ad2a")
+position = Vector2(0, -1.8999993)
+scale = Vector2(0.279998, 0.45277777)
+texture = ExtResource("2_nvvbs")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -22,6 +114,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1.29, 1.29)
-shape = SubResource("RectangleShape2D_1f0kj")
+shape = SubResource("CircleShape2D_nvvbs")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

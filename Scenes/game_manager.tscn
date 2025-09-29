@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceb7uwikob31y"]
+[gd_scene load_steps=16 format=3 uid="uid://ceb7uwikob31y"]
 
 [ext_resource type="Script" uid="uid://ca3p867fbb553" path="res://Scripts/game_manager.gd" id="1_oj352"]
 [ext_resource type="Script" uid="uid://cjrjkthydq318" path="res://Scripts/ui_manager.gd" id="2_e5fcp"]
+[ext_resource type="AudioStream" uid="uid://d3d0cy5n1166c" path="res://audio/win-wave.ogg" id="2_e6ru4"]
 [ext_resource type="FontFile" uid="uid://bnexor3wenf86" path="res://Fonts/ITCKRIST.TTF" id="3_sq00h"]
 [ext_resource type="Texture2D" uid="uid://3yptkhbr34hi" path="res://Sprites/moon-icon.png" id="4_efn8y"]
 [ext_resource type="Texture2D" uid="uid://hroaxtbti5b" path="res://Sprites/HUD.png" id="4_mmt5l"]
@@ -27,6 +28,7 @@ font_size = 18
 script = ExtResource("1_oj352")
 start_money = 100
 fast_forwards_speed = 4
+win_wave_sound = ExtResource("2_e6ru4")
 
 [node name="UI Manager" type="Control" parent="."]
 layout_mode = 3
@@ -151,12 +153,14 @@ stretch_mode = 4
 layout_mode = 0
 offset_left = 20.0
 offset_top = 10.0
-offset_right = 392.0
+offset_right = 395.0
 offset_bottom = 125.0
 bbcode_enabled = true
-text = "label"
+text = "text"
 autowrap_mode = 2
+autowrap_trim_flags = 64
 script = ExtResource("10_kmrvs")
+font_ref = ExtResource("3_sq00h")
 
 [node name="Popup Manager" type="Node2D" parent="."]
 script = ExtResource("9_i4mau")

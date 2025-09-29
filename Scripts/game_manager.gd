@@ -9,6 +9,7 @@ var current_scene = null
 @export var start_pop = 3
 @export var start_housing = 3
 @export var fast_forwards_speed = 2
+@export var win_wave_sound : AudioStream
 
 signal on_day_start
 signal on_night_start
@@ -56,22 +57,24 @@ func _input(event: InputEvent) -> void:
 var is_day : bool = true
 
 func start_day():
+	AudioManager.play(win_wave_sound)
 	is_day = true
 	ui_manager.update_time()
 	money_changed(wave_reward_money)
 	
-	# if there is open housing and more food than population + 1, then grow pop by 1
+	# grow the population to equal the food or housing (whichever is smaller)
 	if housing > pop + 1 and food > pop + 1:
-		pop += 1
-		open_pop += 1
-		popup_manager.do_ui_popup(ui_manager.house_popup.position, "+1 pop", 1)
+		var incr = min(housing - pop, food - pop)
+		pop += incr
+		open_pop += incr
+		popup_manager.do_ui_popup(ui_manager.house_popup.position, "+" + str(incr) + " pop", 1)
 	
 	on_day_start.emit()
 
 func start_night():
 	# consume resources
 	consume_resources_for_pop()
-	ui_manager.update_resources()
+	ui_manager.update_all()
 	
 	# wait a sec, then start night
 	await get_tree().create_timer(1.0).timeout
@@ -81,6 +84,8 @@ func start_night():
 	on_night_start.emit()
 	
 
+var daily_food : int = 0
+
 func consume_resources_for_pop():
 	# consume one food for each pop
 	food -= pop
@@ -88,6 +93,7 @@ func consume_resources_for_pop():
 	# if food is negative, 1 person dies for each missing food
 	if food < 0:
 		pop += food
+		open_pop += food
 		food = 0
 		popup_manager.do_ui_popup(ui_manager.house_popup.position, "Starvation!", 1)
 		if pop <= 0:
@@ -104,6 +110,7 @@ func player_take_damage(damage : int):
 		player_die()
 
 func player_die():
+	# TODO: rework to send to a different scene to make it a bit easier
 	get_tree().reload_current_scene()
 
 # Changing Player Values

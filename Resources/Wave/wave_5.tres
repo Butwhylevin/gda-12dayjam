@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://bv4c02nvnd468"]
+
+[ext_resource type="Script" uid="uid://d3s24dyey84aa" path="res://Scripts/enemy_group.gd" id="1_fsuo2"]
+[ext_resource type="PackedScene" uid="uid://4fplp6e11l1c" path="res://Scenes/Enemy/fast_enemy.tscn" id="2_8s4ty"]
+[ext_resource type="PackedScene" uid="uid://svvxa4aan12l" path="res://Scenes/Enemy/strong_enemy.tscn" id="3_fsuo2"]
+[ext_resource type="Script" uid="uid://bsgscgpeh6asf" path="res://Scripts/enemy_wave.gd" id="5_gjfp6"]
+
+[sub_resource type="Resource" id="Resource_6ddkc"]
+script = ExtResource("1_fsuo2")
+enemy_list = Array[PackedScene]([ExtResource("2_8s4ty")])
+enemy_count_list = Array[int]([20])
+delay_between_enemies = 0.05
+delay_after_group = 0.5
+metadata/_custom_type_script = "uid://d3s24dyey84aa"
+
+[sub_resource type="Resource" id="Resource_sjw5t"]
+script = ExtResource("1_fsuo2")
+enemy_list = Array[PackedScene]([ExtResource("3_fsuo2")])
+enemy_count_list = Array[int]([1])
+delay_between_enemies = 0.1
+metadata/_custom_type_script = "uid://d3s24dyey84aa"
+
+[resource]
+script = ExtResource("5_gjfp6")
+groups = Array[ExtResource("1_fsuo2")]([SubResource("Resource_6ddkc"), SubResource("Resource_sjw5t")])
+metadata/_custom_type_script = "uid://bsgscgpeh6asf"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://4fplp6e11l1c"]
+
+[ext_resource type="PackedScene" uid="uid://dh0gwxbq6rnao" path="res://Scenes/Enemy/enemy.tscn" id="1_11n6r"]
+[ext_resource type="Texture2D" uid="uid://cad0xdl2tovuy" path="res://Sprites/Zombies/fast-zomb-1.png" id="2_4460h"]
+[ext_resource type="Texture2D" uid="uid://53i3ifeglft7" path="res://Sprites/Zombies/fast-zomb-2.png" id="3_w08ki"]
+[ext_resource type="Texture2D" uid="uid://htuuv4txe487" path="res://Sprites/Zombies/fast-zomb-3.png" id="4_w08ki"]
+
+[node name="Fast Enemy" instance=ExtResource("1_11n6r")]
+sprites = Array[Texture]([ExtResource("2_4460h"), ExtResource("3_w08ki"), ExtResource("4_w08ki")])
+speed = 300.0
+hp = 3
+money_reward = 2
+
+[node name="Sprite2D" parent="Sprite Holder" index="1"]
+texture = ExtResource("2_4460h")

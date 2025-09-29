@@ -7,9 +7,11 @@ var tower_index = 0
 @onready var build_tower_preview : Sprite2D = $"Build Preview"
 @onready var build_tower_area : Area2D = $"Build Preview/Build Area"
 @onready var build_tower_name : Label = $"Build Preview/Label"
+@onready var fail_build_audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	build_tower_preview.visible = placing_tower
+	change_selected_tower(0)
 	GameManager.ui_manager.update_tower(towers[tower_index])
 	GameManager.ui_manager.set_tower_visible(placing_tower)
 
@@ -51,14 +53,29 @@ func change_selected_tower(change : int):
 	#build_tower_preview.
 
 func toggle_build_mode():
-	print("toggle build mode")
 	placing_tower = !placing_tower
+	change_selected_tower(0)
 	build_tower_preview.visible = placing_tower
 	GameManager.ui_manager.set_tower_visible(placing_tower)
 
 func can_afford_tower() -> bool:
 	var tower_res = towers[tower_index]
-	return GameManager.money >= tower_res.cost and GameManager.food >= tower_res.food_cost and GameManager.open_pop >= tower_res.pop_cost
+	if GameManager.money < tower_res.cost:
+		GameManager.popup_manager.do_popup(build_tower_preview.global_position, "Need Money", 1)
+		fail_build_audio.play()
+		return false
+	
+	if GameManager.food < tower_res.food_cost:
+		GameManager.popup_manager.do_popup(build_tower_preview.global_position, "Need Food", 1)
+		fail_build_audio.play()
+		return false
+	
+	if GameManager.open_pop < tower_res.pop_cost:
+		GameManager.popup_manager.do_popup(build_tower_preview.global_position, "Need Workers", 1)
+		fail_build_audio.play()
+		return false
+	
+	return true
 
 func can_place_tower_here() -> bool:
 	var overlap = build_tower_area.get_overlapping_areas()

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dpy1h1mtt312e" path="res://Scripts/popup.gd" id="2_qml6d"]
 
 [node name="Popup" type="Label"]
+top_level = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

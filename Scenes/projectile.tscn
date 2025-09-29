@@ -12,7 +12,7 @@ collision_mask = 2
 script = ExtResource("1_yr2qt")
 speed = 500
 pierce = 2
-stun_time = 0.02
+stun_time = 0.0
 lifetime = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

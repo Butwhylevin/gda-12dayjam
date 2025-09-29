@@ -2,17 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://co5tt3kysvk3r" path="res://Scenes/farm_tower.tscn" id="1_63858"]
 [ext_resource type="Script" uid="uid://d3vbu2jgiy8e5" path="res://Scripts/tower_resource.gd" id="2_3jpgi"]
-[ext_resource type="Texture2D" uid="uid://bigg6pmf3bv2m" path="res://icon.svg" id="3_bj1lk"]
+[ext_resource type="Texture2D" uid="uid://db6t0uvsphb0f" path="res://Sprites/farm-icon.png" id="3_63858"]
 
 [resource]
 script = ExtResource("2_3jpgi")
 name = "Farm"
-desc = "Shoots a weak pistol projectile, generates           2 [img={30}]Sprites/food-icon.png[/img] each day."
+desc = "Shoots a weak pistol projectile, generates 2 [img={30}]Sprites/food-icon.png[/img] each day."
 scene = ExtResource("1_63858")
 cost = 50
 pop_cost = 1
-housing_gain = 1
-sprite = ExtResource("3_bj1lk")
+sprite = ExtResource("3_63858")
 radius = 1.0
 size = 0.4
 metadata/_custom_type_script = "uid://d3vbu2jgiy8e5"
