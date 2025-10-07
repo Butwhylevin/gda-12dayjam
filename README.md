@@ -5,7 +5,7 @@ Built with **Godot**, it reinterprets classic flash-style tower defense gameplay
 
 ---
 
-## 🎮 Game Overview
+## Game Overview
 
 - **Genre:** Tower Defense / Strategy  
 - **Platform:** HTML5 (browser)  
@@ -25,14 +25,14 @@ These mechanics add strategy to when and how you place towers.
 
 ---
 
-## 📥 Play Online
+## Play Online
 
 You can play the game directly via itch.io:  
 [Zomboge DefenZe on itch.io](https://butwhylevin.itch.io/zomboge-defenze) :contentReference[oaicite:0]{index=0}
 
 ---
 
-## 🧠 Credits & Acknowledgments
+## Credits & Acknowledgments
 
 - **Music:** Kevin MacLeod  
 - **Engine / Tools:** Godot  
